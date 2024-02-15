@@ -1,0 +1,26 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+
+h1 {
+    color: aqua;
+}
+
+#welcomescreen {
+    max-width: 500px;
+    margin: auto;
+}
+
+#questions,
+#options, 
+#correct {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
