@@ -48,6 +48,7 @@ var secondsLeft = 0;
 var currentQuestion = 0;
 var countdownTimer;
 
+//How to stop the quiz 
 function stopQuiz() {
     clearInterval(countdownTimer);
 
@@ -60,7 +61,7 @@ if (quizEl) {
 }
     messageEl.textContent = "You scored " + score;
 }
-
+//Moving on to the next question
 function nextQuestion() {
     presentQuestion();
 }
@@ -110,7 +111,7 @@ function createOptionButton(option) {
     };
     return button;
 }
-
+//Checks the answer to see if you can proceed 
 function checkAnswer(selectedOption) {
     var question = questions[currentQuestion];
 
@@ -120,5 +121,5 @@ function checkAnswer(selectedOption) {
 
     presentQuestion();
 }
-
+//Addition of an event listener
 beginQuizEl.addEventListener("click", startQuiz);
