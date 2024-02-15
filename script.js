@@ -50,4 +50,60 @@ var currentQuestion = 0;
 
 var countdownTimer; 
 
+function beginQuiz() {
+    welcomeEl.style.display = "none";
+    quizEl.style.display = "block";
+    presentQuestion();
+    startTimer();
+}
 
+function presentQuestion() {
+    var currentQuestionDisplayed = questions[currentQuestion];
+    questionsEl.textContent = currentQuestionDisplayed.question;
+
+    optionsEl.textContent = '';
+    currentQuestionDisplayed.options.forEach(function(options) {
+        optionsEl.appendChild(button);
+    });
+}
+
+function createOptionButton(options) {
+    button.textContent = options;
+    button.onclick = function() {
+    checkAnswer(options);
+}; 
+return button;
+}
+
+function checkAnswer(selectedOption) { 
+    var currentQuestionDisplayed = questions[currentQuestion];
+    if (selectedOption == currentQuestionDisplayed.answer) {
+        score++; 
+    }
+    resultEl.textContent = "Your score = " + score;
+    currentQuestion++; 
+    if (currentQuestion < questions.length) {
+        presentQuestion();
+    } else {
+        endQuiz();
+    }
+}
+
+function startTimer() {
+    countdownTimer = setInterval(function() { 
+        timeLeft--;
+        countdownEl.textContent = "Time Remaining = " + timeLeft + " seconds";
+        if (timeLeft <= 0) {
+            endQuiz();
+        }
+    }, 1000);
+}
+
+
+function endQuiz() {
+    quizEl.style.display = "none";
+    scoreEl.style.display = "block";
+    messageEl.textContent = "Well done! Your total score is = " + score;
+}
+
+beginQuizEl.addEventListener("click", beginQuiz);
